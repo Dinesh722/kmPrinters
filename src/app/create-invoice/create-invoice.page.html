@@ -1,0 +1,167 @@
+<ion-header [translucent]="true">
+<ion-toolbar>
+  <ion-buttons slot="secondary">
+    <ion-button>
+      <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button color="secondary" routerLink="/invoice-list">
+      <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Create Invoice</ion-title>
+</ion-toolbar>
+<!-- <ion-item>
+  <ion-label><ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical" color="primary"></ion-icon></ion-label>
+  <ion-select interface="popover">
+    <ion-select-option value="nes">NES</ion-select-option>
+    <ion-select-option value="n64">Nintendo64</ion-select-option>
+    <ion-select-option value="ps">PlayStation</ion-select-option>
+    <ion-select-option value="genesis">Sega Genesis</ion-select-option>
+    <ion-select-option value="saturn">Sega Saturn</ion-select-option>
+    <ion-select-option value="snes">SNES</ion-select-option>
+  </ion-select>
+</ion-item> -->
+</ion-header>
+
+<ion-content>
+<div style="padding:5px 5px">
+  <!-- Address -->
+  <br>
+  <div>
+    <div>
+      <label>From,</label><br>
+      <span>Username<br>9876543210<br>email@gmail.com</span>
+    </div>
+    <br>
+    <div>
+      <label>To,</label><br>
+      <div class="input-group">
+        <input value="" type="number" class="form-control" name="subTotal" id="subTotal" placeholder="Company Name">
+      </div>
+      <!-- <br> -->
+      <div class="form-group" style="padding-top: 5px;">
+        <textarea class="form-control txt" rows="5" name="notes" id="notes" placeholder="Your Address"></textarea>
+      </div>
+    </div>
+  </div>
+  <!-- table -->
+  <br>
+  <div style="overflow-x:auto;">
+    <table>
+      <tr>
+        <th><ion-checkbox></ion-checkbox></th>
+        <th>Item No</th>
+        <th>Item Name</th>
+        <th>HSN/SAC</th>
+        <th>Quality</th>
+        <th>Price</th>
+        <th>Tax</th>
+        <th>Total</th>
+      </tr>
+      <tr>
+        <td><ion-checkbox></ion-checkbox></td>
+        <td>
+          <div class="input-group">
+            <input value="" type="number" class="form-control" 
+            name="subTotal" id="subTotal" placeholder="" [(ngModel)]="invoiceVal.itemNo"
+            style="width:52px;">
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <input value="" type="number" class="form-control" 
+            name="subTotal" id="subTotal" placeholder="" style="width:100px;" [(ngModel)]="invoiceVal.itemName">
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <input value="" type="number" class="form-control" 
+            name="subTotal" id="subTotal" placeholder="" [(ngModel)]="invoiceVal.hsn_sac"
+            style="width:80px;">
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <input value="" type="number" class="form-control" 
+            name="subTotal" id="subTotal" placeholder="" [(ngModel)]="invoiceVal.quality" (ionChange)="calculateValue()"
+            style="width:52px;">
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+          <input value="" type="number" class="form-control" 
+          name="subTotal" id="subTotal" placeholder="" [(ngModel)]="invoiceVal.price" (ionChange)="calculateValue()"
+          style="width:80px;">
+        </div>
+      </td>
+        <td>
+          <div class="input-group">
+            <ion-input value="" type="number" class="form-control" 
+            name="subTotal" id="subTotal" placeholder="" [(ngModel)]="invoiceVal.tax" (ionChange)="calculateValue()"
+            style="width:52px;"></ion-input>
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <input value="" type="number" class="form-control" 
+            name="subTotal" id="subTotal" placeholder="" [(ngModel)]="invoiceVal.total"
+            style="width:80px;">
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- button -->
+  <div class="col-md-12 col-12 text-right">
+    <ion-button color="danger" size="small">- Delete</ion-button>
+    <ion-button color="success" size="small">+ Add more</ion-button>
+  </div>
+  <!-- calculation -->
+  <br>
+  <div>
+    <div class="col-md-12 col-12">
+      <label>Subtotal:</label>
+      <div class="input-group">
+        <div class="input-group-addon currency">$</div>
+        <input value="" type="number" class="form-control" name="subTotal" id="subTotal" placeholder="Subtotal">
+      </div>
+    </div>
+    <div class="col-md-12 col-12">
+      <label>Tax Amount:</label>
+      <div class="input-group">
+        <div class="input-group-addon currency">$</div>
+        <input value="" type="number" class="form-control" name="subTotal" id="subTotal" placeholder="Subtotal">
+      </div>
+    </div>
+    <div class="col-md-12 col-12">
+      <label>Total:</label>
+      <div class="input-group">
+        <div class="input-group-addon currency">$</div>
+        <input value="" type="number" class="form-control" name="subTotal" id="subTotal" placeholder="Subtotal">
+      </div>
+    </div>
+    <div class="col-md-12 col-12">
+      <label>Amount Due:</label>
+      <div class="input-group">
+        <div class="input-group-addon currency">$</div>
+        <input value="" type="number" class="form-control" name="subTotal" id="subTotal" placeholder="Subtotal">
+      </div>
+    </div>
+  </div>
+  <!-- Notes -->
+  <br>
+  <div class="col-md-12 col-12">
+    <label>Notes:</label>
+    <div class="form-group">
+      <textarea class="form-control txt" rows="5" name="notes" id="notes" placeholder="Your Notes"></textarea>
+    </div>
+  </div>
+  <!-- button -->
+  <div class="col-md-12 col-12 text-right">
+    <ion-button color="success" size="small">Save Invoice</ion-button>
+  </div>
+
+</div>
+</ion-content>

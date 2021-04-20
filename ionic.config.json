@@ -1,0 +1,7 @@
+{
+  "name": "km_print",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
